@@ -1,1 +1,4 @@
-data/*
+data/video/*
+extra_files/*
+data/audio_chunks/*
+data/audio/*
