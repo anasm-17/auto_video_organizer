@@ -6,6 +6,8 @@ For this project, I use [Mike Gelbart's](https://www.mikegelbart.com/) lecture v
 ## Problem
 Our live lecture recording videos for the Master of Data Science program were dumped into a server with date and time as the video titles. I wanted to come up with an automated way of organizing the lecture videos on my laptop to match them with corresponding lecture notes. There could have been a number of approaches better and faster than this but this idea came to mind and I wanted to test it out.
 
+![animation](images/process_animation.gif)
+
 ## Workflow
 
 <img src="images/workflow.PNG">
