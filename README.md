@@ -14,5 +14,5 @@ Our live lecture recording videos for the Master of Data Science program were du
 2) Perform speech recognition on audio files
 3) Preprocess transcribed text
 4) Preprocess lecture notes
-5) Perform document similarity with 4. and 5.
+5) Perform document similarity with 3. and 4.
 6) Rename video files with appropriate names or move video files to respective directories
