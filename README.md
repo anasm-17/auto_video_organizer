@@ -1,5 +1,5 @@
 # auto_video_organizer
-[Access the Report](https://github.com/anasm-17/video_organizer/blob/master/report.ipynb) 
+[Access the report](https://github.com/anasm-17/video_organizer/blob/master/report.ipynb) 
 
 For this project, I use [Mike Gelbart's](https://www.mikegelbart.com/) lecture videos and notes to demonstrate a POC on how one can organize unlabeled documentaries or lecture videos to similar text documents by performing speech recognition and text similarity. You can find the report of the solution [here](https://github.com/anasm-17/video_organizer/blob/master/report.ipynb). Thank you [Mike](https://www.mikegelbart.com/) for allowing me to do this on your lecture materials and demonstrate it publicly.
 
