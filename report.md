@@ -1,8 +1,7 @@
 ```python
-from pydub import AudioSegment # https://github.com/jiaaro/pydub
+from pydub import AudioSegment
 import gc
 import speech_recognition as sr
-from pydub.silence import split_on_silence
 import os
 import librosa
 import librosa.display
@@ -33,9 +32,9 @@ import glob
 
 ### 1.1 convert video to audio (wav) files <a class="anchor" id=1.1></a>
 
->I'll be using `lecture 3 - floating points` and `lecture 5 - neural networks` from Mike Gelbart's [Supervised Learning II playlist](https://www.youtube.com/playlist?list=PLWmXHcz_53Q3KLISD8jydKjz41b9iqERC)
+I'll be using `lecture 3 - floating points` and `lecture 5 - neural networks` from Mike Gelbart's [Supervised Learning II playlist](https://www.youtube.com/playlist?list=PLWmXHcz_53Q3KLISD8jydKjz41b9iqERC)
 
-> Place video files in mp4 format to `data/video/`
+Place video files in mp4 format to `data/video/`
 
 #### 1.1.1 load video files
 
@@ -79,7 +78,7 @@ video_urls
 
 #### 1.1.2 Convert video to audio
 
-> Need to convert to wav format for speech recognition. I will not be performing any audio preprocessing as I'll be working on the baseline model, with minimal effort. If the results are not favorable I may preprocess the audio files.
+Need to convert to wav format for speech recognition. I will not be performing any audio preprocessing as I'll be working on the baseline model, with minimal effort. If the results are not favorable I may preprocess the audio files.
 
 
 ```python
@@ -104,7 +103,7 @@ gc.collect();
 
 #### 1.2.1 Chunk audio files
 
-> Need to chunk audio files as I am using Google's free speech recognition API, which only processes 5 seconds worth of information at a time.
+Need to chunk audio files as I am using Google's free speech recognition API, which only processes 5 seconds worth of information at a time.
 
 
 ```python
@@ -184,6 +183,8 @@ audio_chunker(audio_files, "data/audio_chunks/")
     
 
 #### 1.2.2 Speech recognition and saving to text file
+
+For the speech recognition part, I will extract approximately 10k characters to build a baseline model and to save time.
 
 
 ```python
@@ -693,7 +694,7 @@ audio_chunk_to_text("data/audio_chunks/", "data/text/")
     Process complete! 374/1018 converted.
     
 
-> Let's read in our trancribed text to see how well it did. I will read in the transcribed text for `vid_1`.
+Let's read in our trancribed text to see how well it did. I will read in the transcribed text for `vid_1`.
 
 
 ```python
@@ -713,15 +714,15 @@ vid_1_transcribed[:2000]
 
 
 
-> Wow that seems to have done a fairly good job without any preprocessing from my end! But you may notice some discontinuity, like in the first line "let's get started are you good at the So today", I believe this could be due to my abrupt chunking which does not seem like a good practice. How I am chunking now looks like:
+Wow! That seems to have done a fairly good job without any preprocessing from my end! But you may notice some discontinuity, like in the first line "let's get started are you good at the So today", I believe this could be due to my abrupt chunking which does not seem like a good practice. How I am chunking now looks like:
 
 <img src="images/abrupt_chunking.PNG">
 
-> Here, with my abrupt chunking methodology, I the speech recognizer is unable to capture the word guidelines as it gets cut off. However, if I were to overlap my chunks:
+Here, with my abrupt chunking methodology, I the speech recognizer is unable to capture the word guidelines as it gets cut off. However, if I were to overlap my chunks:
 
 <img src="images/overlap_chunking.PNG">
 
-> Now I am able to capture guidelines. Probably by overlapping for 0.5 to 1 second, resulting in longer chunks but making the transcribed texts more coherent. For now I'll leave it be to build the baseline model to see if it works.
+Now I am able to capture guidelines. Probably by overlapping for 0.5 to 1 second, resulting in longer chunks but making the transcribed texts more coherent. For now I'll leave it be to build the baseline model to see if it works.
 
 ## 2. Performing text similarity matching <a class="anchor" id="2.0"></a>
 
@@ -1087,7 +1088,7 @@ df_transcr_notes["prep_text"] = df_transcr_notes["transc_text"].apply(lambda x: 
 
 ### 2.3 Performing text similarity <a class="anchor" id="2.3"></a>
 
-#### 2.2.1 Perform text similarity using TFIDF
+#### 2.3.1 Perform text similarity using TFIDF
 
 > This is not the most effective way of computing document similarity, as it does not take into account the context. However, I wanted to try with the simplest model first to see if I get good results.
 
@@ -1151,7 +1152,7 @@ def doc_class_assign_tfidf(unlabeled_doc, labeled_docs):
 assigned_lec_class = df_transcr_notes["prep_text"].apply(lambda x: doc_class_assign_tfidf(x, df_lec_notes["prep_text"]))
 ```
 
-> Scores seems to be doing just fine for this example, `lecture document 0` is more closer to `vid_1` and `lecture document 1` is closer to `vid_2`. No need to improve the model for this example.
+Scores seems to be doing just fine for this example, `lecture document 0` is more closer to `vid_1` and `lecture document 1` is closer to `vid_2`. No need to improve the model for this example.
 
 ## 3. Results <a class="anchor" id="3.0"></a>
 
@@ -1228,7 +1229,7 @@ df_results
 
 
 
-> Voilà! There we have it, successful document classification of unclassified videos. I can't share the results for all the videos as they are not publicly available. 
+###### Voilà! There we have it, successful document classification of unclassified videos. I can't share the results and analysis for all the lecture videos in my program as they are not publicly available. 
 
 ## References <a class="anchor" id="references"></a>
 - [1] https://codeloop.org/python-how-to-convert-recorded-audio-to-text/
