@@ -718,15 +718,15 @@ vid_1_transcribed[:2000]
 
 
 
-Wow! That seems to have done a fairly good job without any preprocessing from my end! But you may notice some discontinuity, like in the first line "let's get started are you good at the So today", I believe this could be due to my abrupt chunking which does not seem like a good practice. How I am chunking now looks like:
+Wow! That seems to have done a fairly good job without any preprocessing from my end! But you may notice some discontinuity, like in the first line "let's get started are you good at the So today", I believe this could be due to my abrupt chunking which does not seem like a good practice. Let's take "The social distancing guidelines for the current situation are..." as a sentence a speaker is saying. Now using my current methodology, the chunks would look like:
 
-<img src="images/abrupt_chunking.PNG">
+<img src="https://github.com/anasm-17/auto_video_organizer/blob/master/images/abrupt_chunking.PNG?raw=true">
 
-Here, with my abrupt chunking methodology, I the speech recognizer is unable to capture the word guidelines as it gets cut off. However, if I were to overlap my chunks:
+Here, with my abrupt chunking methodology, the speech recognizer is unable to capture the word guidelines as it gets cut off. However, if I were to overlap my chunks:
 
-<img src="images/overlap_chunking.PNG">
+<img src="https://github.com/anasm-17/auto_video_organizer/blob/master/images/overlap_chunking.PNG?raw=true">
 
-Now I am able to capture guidelines. Probably by overlapping for 0.5 to 1 second, resulting in longer chunks but making the transcribed texts more coherent. For now I'll leave it be to build the baseline model to see if it works.
+Now I am able to capture guidelines. Probably by overlapping by 0.5 to 1 second(s), we would get longer chunks but it would make the transcribed texts more coherent. For now I'll leave it be to build the baseline model to see if it works.
 
 ## 2. Performing text similarity matching <a class="anchor" id="2.0"></a>
 
