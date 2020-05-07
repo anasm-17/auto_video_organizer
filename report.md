@@ -282,6 +282,8 @@ def audio_chunk_to_text(audio_chunks_dir, op_dir, max_text_len=10000):
         print(f"Process complete! {i+1}/{len(audio_chunks)} converted.")
 ```
 
+**[SKIP LENGHTHY OUTPUT](#skip_output)**
+
 
 ```python
 audio_chunk_to_text("data/audio_chunks/", "data/text/")
@@ -694,13 +696,15 @@ audio_chunk_to_text("data/audio_chunks/", "data/text/")
     Process complete! 374/1018 converted.
     
 
-Let's read in our trancribed text to see how well it did. I will read in the transcribed text for `vid_1`.
+<a class="anchor" id="skip_output"></a> Let's read in our trancribed text to see how well the speech recognition performed. 
 
 
 ```python
 with open("data/text/transcribed_vid_1.txt") as f:
     vid_1_transcribed = f.read()
 ```
+
+I will read in the transcribed text for `vid_1` and look at the first 2000 characters to gage the performance. 
 
 
 ```python
